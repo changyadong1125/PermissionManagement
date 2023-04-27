@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version: v1.0
  * @Description:
  */
-@MapperScan(basePackages = "com.atguigu.springboot.mapper")
+
 @SpringBootApplication
 public class ServiceAuthApplication {
 

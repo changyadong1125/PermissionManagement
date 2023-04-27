@@ -1,13 +1,3 @@
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/guigu-auth
-    username: root
-    password: 190325
-logging:
-  level:
-    com.atguigu.springboot: debug
-  #springboot打印日志信息默认是info及以上
+  profiles:
+    active: dev

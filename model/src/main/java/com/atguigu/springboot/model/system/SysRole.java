@@ -6,12 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @ApiModel(description = "角色")
 //和表名映射
 @TableName("sys_role")
+@AllArgsConstructor
 public class SysRole extends BaseEntity {
 	
 	private static final long serialVersionUID = 1L;
