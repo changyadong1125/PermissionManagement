@@ -8,20 +8,22 @@
         id属性：设置为接口中的方法名
         resultType属性：设置为方法的返回值的类型的全类名
     -->
-<resultMap id="RoleMap" type="com.atguigu.springboot.model.system.SysRole" autoMapping="true"/>
+    <resultMap id="RoleMap" type="com.atguigu.springboot.model.system.SysRole" autoMapping="true"/>
 
     <sql id="columns">
         id,role_name,role_code,description,create_time,update_time,is_deleted
     </sql>
-<!--      IPage<SysRole> selectPage(Page<SysRole> page, @Param("vo") SysRoleQueryVo roleQueryVo);-->
-<select id="selectPage" resultMap="RoleMap">
-    select  <include refid="columns"/>
+    <!--      IPage<SysRole> selectPage(Page<SysRole> page, @Param("vo") SysRoleQueryVo roleQueryVo);-->
+    <select id="selectPage" resultMap="RoleMap">
+        select
+        <include refid="columns"/>
         from sys_role
         <where>
+            and is_deleted = 0
             <if test="vo.roleName != null and vo.roleName != ''">
                 and role_name like concat('%',#{vo.roleName},'%')
             </if>
         </where>
         order by id desc
-</select>
+    </select>
 </mapper>

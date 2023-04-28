@@ -16,21 +16,21 @@ public class Result<T> {
     private Result(){}
 
     // 返回数据
-    protected static <T> Result<T> build(T data) {
-        Result<T> result = new Result<T>();
+    private static <T> Result<T> build(T data) {
+        Result<T> result = new Result<>();
         if (data != null)
             result.setData(data);
         return result;
     }
 
-    public static <T> Result<T> build(T body, Integer code, String message) {
+    private static <T> Result<T> build(T body, Integer code, String message) {
         Result<T> result = build(body);
         result.setCode(code);
         result.setMessage(message);
         return result;
     }
 
-    public static <T> Result<T> build(T body, ResultCodeEnum resultCodeEnum) {
+    private static <T> Result<T> build(T body, ResultCodeEnum resultCodeEnum) {
         Result<T> result = build(body);
         result.setCode(resultCodeEnum.getCode());
         result.setMessage(resultCodeEnum.getMessage());
@@ -42,10 +42,10 @@ public class Result<T> {
     }
 
     /**
-     * 操作成功
-     * @param data  baseCategory1List
-     * @param <T>
-     * @return
+     * return:
+     * author: smile
+     * version: 1.0
+     * description:操作成功
      */
     public static<T> Result<T> ok(T data){
         return build(data, ResultCodeEnum.SUCCESS);
@@ -56,10 +56,10 @@ public class Result<T> {
     }
 
     /**
-     * 操作失败
-     * @param data
-     * @param <T>
-     * @return
+     * return:
+     * author: smile
+     * version: 1.0
+     * description:操作失败
      */
     public static<T> Result<T> fail(T data){
         return build(data, ResultCodeEnum.FAIL);

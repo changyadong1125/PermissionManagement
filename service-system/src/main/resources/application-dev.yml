@@ -7,6 +7,13 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
+      #global-config:
+      #db-config:
+      #logic-delete-value: 2
+      #logic-not-delete-value: 0
+      #逻辑删除的字段 配置了不用添加 @TableLogic @TableField("is_deleted") 注解
+      #logic-delete-field: isDeleted
+
 logging:
   level:
     com.atguigu.springboot: debug
