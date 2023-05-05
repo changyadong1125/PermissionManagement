@@ -24,6 +24,6 @@
                 and role_name like concat('%',#{vo.roleName},'%')
             </if>
         </where>
-        order by id desc
+        order by id asc
     </select>
 </mapper>

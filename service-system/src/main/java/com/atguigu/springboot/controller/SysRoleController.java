@@ -4,9 +4,7 @@ import com.atguigu.springboot.common.result.Result;
 import com.atguigu.springboot.model.system.SysRole;
 import com.atguigu.springboot.model.vo.SysRoleQueryVo;
 import com.atguigu.springboot.service.SysRoleService;
-import com.atguigu.springboot.service.SysRoleServiceImp;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -30,7 +28,7 @@ import java.util.List;
  */
 @Api(tags = "角色管理")
 @RestController
-@RequestMapping("/admin/sysRole")
+@RequestMapping("/admin/system/sysRole")
 public class SysRoleController {
     @Resource
     private SysRoleService sysRoleServiceImp;
@@ -52,15 +50,16 @@ public class SysRoleController {
      * author: smile
      * version: 1.0
      * description: 分页
+     * required 参数是否是必须的 true为必须的 默认为true
      */
     @ApiOperation(value = "获取分页")
-    @GetMapping("/page/{page}/{limit}")
+    @PostMapping ("/{page}/{limit}")
     public Result<?> index(
             @ApiParam(name = "page", value = "当前页码", required = true)
             @PathVariable Integer page,
             @ApiParam(name = "limit", value = "每页记录数", required = true)
             @PathVariable Integer limit,
-            @ApiParam(name = "roleQueryVo", value = "查询对象", required = true) SysRoleQueryVo sysRoleQueryVo) {
+            @ApiParam(name = "roleQueryVo", value = "查询对象", required = true) @RequestBody SysRoleQueryVo sysRoleQueryVo) {
         Page<SysRole> pageParam = new Page<>(page, limit);
         IPage<SysRole> pageModel = sysRoleServiceImp.selectPage(pageParam, sysRoleQueryVo);
         return Result.ok(pageModel);

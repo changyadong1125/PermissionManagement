@@ -3,14 +3,12 @@ package com.atguigu.springboot;
 import com.atguigu.springboot.mapper.SysRoleMapper;
 import com.atguigu.springboot.model.system.SysRole;
 import com.atguigu.springboot.service.SysRoleService;
-import com.atguigu.springboot.service.SysRoleServiceImp;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import javax.annotation.Resource;
 import java.util.*;
 

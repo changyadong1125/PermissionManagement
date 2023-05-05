@@ -24,26 +24,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * description:创建全局异常处理类
  */
 @ControllerAdvice
+@ResponseBody
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
-    @ResponseBody
     public Result<?> error(Exception  e){
         e.printStackTrace();
         return Result.fail();
     }
 
     @ExceptionHandler(ArithmeticException.class)
-    @ResponseBody
     public Result<?> error(ArithmeticException  e){
         e.printStackTrace();
-        return Result.fail().message("出现了特定的异常");
+        return Result.fail().message("数学异常");
 
     }
     @ExceptionHandler(MyException.class)
-    @ResponseBody
     public Result<?> error(MyException e){
         e.printStackTrace();
         return Result.fail().message(e.getMessage()).code(e.getCode());
+    }
+    @ExceptionHandler(RuntimeException.class)
+    public Result<?> error(RuntimeException e){
+        e.printStackTrace();
+        return Result.fail().message(e.getMessage());
 
     }
 }

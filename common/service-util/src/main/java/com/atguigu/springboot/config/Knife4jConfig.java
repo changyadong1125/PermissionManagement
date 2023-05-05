@@ -76,7 +76,7 @@ public class Knife4jConfig {
                 .description("本文档描述了后台管理系统微服务接口定义")
                 .version("1.0")
                 //联系人相关信息
-                .contact(new Contact("qy", "http://atguigu.com", "493290402@qq.com"))
+                .contact(new Contact("smail", "http://atguigu.com", "2559449523@qq.com"))
                 .build();
     }
 

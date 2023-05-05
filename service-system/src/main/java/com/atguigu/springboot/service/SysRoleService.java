@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import javax.management.relation.Role;
-
 /**
  * project:PermissionManagement
  * package:com.atguigu.springboot.service
