@@ -2,7 +2,7 @@ package com.atguigu.springboot.service;
 
 import com.atguigu.springboot.model.system.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.fasterxml.jackson.databind.ser.std.InetSocketAddressSerializer;
+
 
 /**
  * project:PermissionManagement
@@ -15,4 +15,5 @@ import com.fasterxml.jackson.databind.ser.std.InetSocketAddressSerializer;
  * @Description:
  */
 public interface SysUserService extends IService<SysUser> {
+     boolean updateStatus(Long id, Integer status) ;
 }

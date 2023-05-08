@@ -2,20 +2,16 @@ package com.atguigu.springboot.controller;
 
 import com.atguigu.springboot.common.result.Result;
 import com.atguigu.springboot.common.util.MD5;
-import com.atguigu.springboot.model.system.SysRole;
 import com.atguigu.springboot.model.system.SysUser;
 import com.atguigu.springboot.model.vo.LoginVo;
-import com.atguigu.springboot.service.SysRoleService;
 import com.atguigu.springboot.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,6 +67,7 @@ public class LoginController {
             return Result.ok(ResMap);
         }else{
             ResMap.put("token", "用户不存在");
+            ResMap.put("message", "用户或密码错误");
             return Result.fail(ResMap);
         }
     }

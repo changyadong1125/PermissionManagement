@@ -2,6 +2,7 @@ package com.atguigu.springboot.controller;
 
 import com.atguigu.springboot.common.result.Result;
 import com.atguigu.springboot.model.system.SysRole;
+import com.atguigu.springboot.model.vo.AssignRoleVo;
 import com.atguigu.springboot.model.vo.SysRoleQueryVo;
 import com.atguigu.springboot.service.SysRoleService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -14,7 +15,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * project:PermissionManagement
@@ -88,18 +91,6 @@ public class SysRoleController {
      * return:
      * author: smile
      * version: 1.0
-     * description:
-     */
-    @ApiOperation(value = "角色查询")
-    @GetMapping("/get/{id}")
-    public Result<SysRole> get(@PathVariable Long id){
-        SysRole role = sysRoleServiceImp.getById(id);
-       return Result.ok(role);
-    }
-    /**
-     * return:
-     * author: smile
-     * version: 1.0
      * description:增
      */
     @ApiOperation("角色新增")
@@ -116,7 +107,7 @@ public class SysRoleController {
      */
     @ApiOperation("角色删除")
     @DeleteMapping("/query/{id}")
-    public Result<SysRole> deleteOne(@PathVariable String id){
+    public Result<SysRole> deleteOne(@PathVariable Long id){
         sysRoleServiceImp.removeById(id);
         return Result.ok();
     }
@@ -140,7 +131,7 @@ public class SysRoleController {
      */
     @ApiOperation("角色回显")
     @PutMapping ("/update/{id}")
-    public Result<SysRole> get(@PathVariable String id){
+    public Result<SysRole> update(@PathVariable Long id){
         SysRole sysRole = sysRoleServiceImp.getById(id);
         return Result.ok(sysRole);
     }
@@ -152,8 +143,32 @@ public class SysRoleController {
      */
     @ApiOperation("角色修改")
     @PutMapping("/update")
-    public Result<SysRole> get(@RequestBody SysRole sysRole){
+    public Result<SysRole> edit(@RequestBody SysRole sysRole){
+        sysRole.setUpdateTime(new Date());
         sysRoleServiceImp.updateById(sysRole);
+        return Result.ok();
+    }
+    /**
+     * return:
+     * author: smile
+     * version: 1.0
+     * description:获取所有的角色列表和当前用户的角色
+     */
+    @ApiOperation(value = "角色查询")
+    @GetMapping("/query/{id}")
+    public Result<?> get(@PathVariable Long id){
+        Map<String,Object> map = sysRoleServiceImp.getRoleByUserId(id);
+        return Result.ok(map);
+    }
+    /**
+     * return:
+     * author: smile
+     * version: 1.0
+     * description:给用户绑定角色
+     */
+    @PostMapping("/doAssign")
+    public Result<?> doAssign(@RequestBody AssignRoleVo assignRoleVo){
+        sysRoleServiceImp.assignRole(assignRoleVo);
         return Result.ok();
     }
 }

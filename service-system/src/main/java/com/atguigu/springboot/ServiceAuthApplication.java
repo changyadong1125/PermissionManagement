@@ -17,5 +17,28 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ServiceAuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(ServiceAuthApplication.class, args);
+        System.out.println("/**\n" +
+                " *　　┏┓　　　┏┓+ +\n" +
+                " *　┏┛┻━━━┛┻┓ + +\n" +
+                " *　┃　　　　　　　┃ 　\n" +
+                " *　┃　　　━　　　┃ ++ + + +\n" +
+                " * ████━████ ┃+\n" +
+                " *　┃　　　　　　　┃ +\n" +
+                " *　┃　　　┻　　　┃\n" +
+                " *　┃　　　　　　　┃ + +\n" +
+                " *　┗━┓　　　┏━┛\n" +
+                " *　　　┃　　　┃　　　　　　　　　　　\n" +
+                " *　　　┃　　　┃ + + + +\n" +
+                " *　　　┃　　　┃\n" +
+                " *　　　┃　　　┃ +  神兽保佑\n" +
+                " *　　　┃　　　┃    代码无bug　　\n" +
+                " *　　　┃　　　┃　　+　　　　　　　　　\n" +
+                " *　　　┃　 　　┗━━━┓ + +\n" +
+                " *　　　┃ 　　　　　　　┣┓\n" +
+                " *　　　┃ 　　　　　　　┏┛\n" +
+                " *　　　┗┓┓┏━┳┓┏┛ + + + +\n" +
+                " *　　　　┃┫┫　┃┫┫\n" +
+                " *　　　　┗┻┛　┗┻┛+ + + +\n" +
+                " */");
     }
 }
