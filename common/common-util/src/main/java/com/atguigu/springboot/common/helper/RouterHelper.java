@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 /**
  *根据菜单数据构建路由的工具类
  */
+@SuppressWarnings("all")
 public class RouterHelper {
 
     /**

@@ -44,25 +44,28 @@ public class SysMenuController {
      */
     @ApiOperation("菜单添加")
     @PostMapping("/update")
-    public Result<?> save(@RequestBody SysMenu sysMenu){
+    public Result<?> save(@RequestBody SysMenu sysMenu) {
         sysMenuServiceImp.save(sysMenu);
         return Result.ok();
     }
+
     @ApiOperation("菜单删除")
     @DeleteMapping("/delete/{id}")
-    public Result<?> delete(@PathVariable Long id){
+    public Result<?> delete(@PathVariable Long id) {
         sysMenuServiceImp.removeById(id);
         return Result.ok();
     }
+
     @ApiOperation("菜单回显")
     @GetMapping("/update/{id}")
-    public Result<?> edit(@PathVariable Long id){
+    public Result<?> edit(@PathVariable Long id) {
         SysMenu sysMenu = sysMenuServiceImp.getById(id);
         return Result.ok(sysMenu);
     }
+
     @ApiOperation("菜单修改")
-    @PutMapping ("/update")
-    public Result<?> edit(@RequestBody SysMenu sysMenu){
+    @PutMapping("/update")
+    public Result<?> edit(@RequestBody SysMenu sysMenu) {
         sysMenu.setUpdateTime(null);
         sysMenuServiceImp.updateById(sysMenu);
         return Result.ok();
@@ -75,11 +78,12 @@ public class SysMenuController {
      * description:回显所有权限列表和当前角色的权限
      */
     @ApiOperation("权限分配页面")
-    @GetMapping ("/getRoleMenuList/{id}")
-    public Result<?> getRoleMenuList(@PathVariable Long id){
-       List<SysMenu> list= sysMenuServiceImp.getRoleMenuList(id);
+    @GetMapping("/getRoleMenuList/{id}")
+    public Result<?> getRoleMenuList(@PathVariable Long id) {
+        List<SysMenu> list = sysMenuServiceImp.getRoleMenuList(id);
         return Result.ok(list);
     }
+
     /**
      * return:
      * author: smile
@@ -87,8 +91,8 @@ public class SysMenuController {
      * description:给当前角色分配新的权限
      */
     @ApiOperation("权限分配")
-    @PostMapping ("/assignMenu")
-    public Result<?> getRoleMenuList(@RequestBody AssignMenuVo assignMenuVo){
+    @PostMapping("/assignMenu")
+    public Result<?> getRoleMenuList(@RequestBody AssignMenuVo assignMenuVo) {
         sysMenuServiceImp.assignMenu(assignMenuVo);
         return Result.ok();
     }

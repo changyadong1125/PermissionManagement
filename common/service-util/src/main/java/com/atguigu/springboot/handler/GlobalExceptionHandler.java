@@ -1,16 +1,5 @@
 package com.atguigu.springboot.handler;
 
-/**
- * project:PermissionManagement
- * package:handler
- * class:GlobalExceptionHandler
- *
- * @author: smile
- * @create: 2023/4/27-7:46
- * @Version: v1.0
- * @Description:
- */
-
 import com.atguigu.springboot.common.result.Result;
 import com.atguigu.springboot.exception.MyException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,24 +16,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public Result<?> error(Exception  e){
+    public Result<?> error(Exception e) {
         e.printStackTrace();
         return Result.fail();
     }
 
     @ExceptionHandler(ArithmeticException.class)
-    public Result<?> error(ArithmeticException  e){
+    public Result<?> error(ArithmeticException e) {
         e.printStackTrace();
         return Result.fail().message("数学异常");
 
     }
+
     @ExceptionHandler(MyException.class)
-    public Result<?> error(MyException e){
+    public Result<?> error(MyException e) {
         e.printStackTrace();
         return Result.fail().message(e.getMessage()).code(e.getCode());
     }
+
     @ExceptionHandler(RuntimeException.class)
-    public Result<?> error(RuntimeException e){
+    public Result<?> error(RuntimeException e) {
         e.printStackTrace();
         return Result.fail().message(e.getMessage());
 

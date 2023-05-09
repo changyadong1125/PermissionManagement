@@ -3,6 +3,7 @@ package com.atguigu.springboot.common.result;
 import lombok.Getter;
 
 @Getter
+@SuppressWarnings("all")
 public enum ResultCodeEnum {
     SUCCESS(200, "成功"),
     FAIL(201, "失败"),

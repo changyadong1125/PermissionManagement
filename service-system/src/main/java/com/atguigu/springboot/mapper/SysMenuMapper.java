@@ -3,6 +3,8 @@ package com.atguigu.springboot.mapper;
 import com.atguigu.springboot.model.system.SysMenu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * project:PermissionManagement
  * package:com.atguigu.springboot.mapper
@@ -14,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @Description:
  */
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
+    List<SysMenu> getUserMenuListById(Long id);
 }

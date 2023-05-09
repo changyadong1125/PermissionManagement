@@ -1,17 +1,4 @@
 package com.atguigu.springboot.config;
-
-/**
- * project:PermissionManagement
- * package:com.atguigu.springboot.config
- * class:Knife4jConfig
- *
- * @author: smile
- * @create: 2023/4/26-19:43
- * @Version: v1.0
- * @Description:
- */
-
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -28,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * knife4j配置信息
@@ -54,7 +42,7 @@ public class Knife4jConfig {
         pars.add(tokenPar.build());
         //添加head参数end
 
-        Docket adminApi = new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SWAGGER_2)
                 //分组名
                 .groupName("adminApi")
                 //说明信息
@@ -66,7 +54,6 @@ public class Knife4jConfig {
                 .paths(PathSelectors.regex("/admin/.*"))
                 .build()
                 .globalOperationParameters(pars);
-        return adminApi;
     }
 
     private ApiInfo adminApiInfo() {
@@ -76,7 +63,7 @@ public class Knife4jConfig {
                 .description("本文档描述了后台管理系统微服务接口定义")
                 .version("1.0")
                 //联系人相关信息
-                .contact(new Contact("smail", "http://atguigu.com", "2559449523@qq.com"))
+                .contact(new Contact("smail", "", "2559449523@qq.com"))
                 .build();
     }
 

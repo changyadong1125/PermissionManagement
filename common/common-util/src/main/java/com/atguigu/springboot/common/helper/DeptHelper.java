@@ -14,6 +14,7 @@ import java.util.Objects;
  * </p>
  *
  */
+@SuppressWarnings("all")
 public class DeptHelper {
 
     //把一个List转成树

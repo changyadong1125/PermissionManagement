@@ -15,6 +15,7 @@ import lombok.Data;
  * @Description: 自定义异常类
  */
 @Data
+@SuppressWarnings("all")
 public class MyException extends RuntimeException{
     private Integer code;
     private String message;

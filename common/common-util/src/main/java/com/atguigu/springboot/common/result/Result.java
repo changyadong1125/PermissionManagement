@@ -3,6 +3,7 @@ package com.atguigu.springboot.common.result;
 import lombok.Data;
 
 @Data
+@SuppressWarnings("all")
 public class Result<T> {
     //返回码
     private Integer code;
