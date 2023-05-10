@@ -12,15 +12,19 @@ import java.util.Objects;
  * <p>
  * 根据权限数据构建菜单数据
  * </p>
- *
  */
 @SuppressWarnings("all")
 public class DeptHelper {
 
-    //把一个List转成树
+    /**
+     * return:
+     * author: smile
+     * version: 1.0
+     * description:把一个List转成树
+     */
     public static List<SysDept> buildTree(List<SysDept> list, Long parentId) {
         List<SysDept> tree = new ArrayList<>();
-        if(!CollectionUtils.isEmpty(list)){
+        if (!CollectionUtils.isEmpty(list)) {
             for (SysDept org : list) {
                 if (Objects.equals(org.getParentId(), parentId)) {
                     tree.add(findChild(org, list));

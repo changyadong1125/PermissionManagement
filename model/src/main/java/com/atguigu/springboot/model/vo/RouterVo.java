@@ -6,15 +6,13 @@ import java.util.List;
 
 /**
  * 路由配置信息
- *
  */
 @Data
-public class RouterVo
-{
+public class RouterVo {
     /**
      * 路由名字
      */
-    //private String name;
+    private String name;
 
     /**
      * 路由地址

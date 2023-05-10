@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +33,10 @@ public class sysUserController {
     @Resource
     private SysUserService sysUserServiceImp;
 
+
     @GetMapping("/{pageNum}/{pageSize}")
     @ApiOperation("用户分页查询")
+    @PreAuthorize("hasAuthority('bnt.sysUser.list')")
     public Result<?> pageList(
             @ApiParam("当前页") @PathVariable Integer pageNum,
             @ApiParam("每页条数") @PathVariable Integer pageSize,
@@ -64,6 +67,7 @@ public class sysUserController {
      */
     @PostMapping("/update")
     @ApiOperation("用户新增")
+    @PreAuthorize("hasAuthority('bnt.sysUser.add')")
     public Result<SysUser> save(@RequestBody SysUser sysUser) {
         sysUser.setPassword(MD5.encrypt(sysUser.getPassword()));
         sysUser.setStatus(1);
@@ -78,8 +82,10 @@ public class sysUserController {
      * version: 1.0
      * description:删
      */
+
     @DeleteMapping("/query/{id}")
     @ApiOperation("用户删除")
+    @PreAuthorize("hasAuthority('bnt.sysUser.remove')")
     public Result<?> save(@PathVariable Long id) {
         sysUserServiceImp.removeById(id);
         return Result.ok();
@@ -93,6 +99,7 @@ public class sysUserController {
      */
     @ApiOperation("用户回显")
     @GetMapping("/update/{id}")
+    @PreAuthorize("hasAuthority('bnt.sysUser.update')")
     public Result<SysUser> updateT(@PathVariable Long id) {
         SysUser sysUser = sysUserServiceImp.getById(id);
         return Result.ok(sysUser);
@@ -106,12 +113,14 @@ public class sysUserController {
      */
     @ApiOperation("用户修改")
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('bnt.sysUser.update')")
     public Result<?> update(@RequestBody SysUser sysUser) {
         sysUserServiceImp.updateById(sysUser);
         return Result.ok();
     }
     @ApiOperation("更改用户状态")
     @PutMapping("/update/{userId}/{status}")
+    @PreAuthorize("hasAuthority('bnt.sysUser.update')")
     public Result<?> setStatus(@PathVariable Long userId,@PathVariable Integer status){
         if (sysUserServiceImp.updateStatus(userId, status)) return Result.ok();
         else return  Result.fail();

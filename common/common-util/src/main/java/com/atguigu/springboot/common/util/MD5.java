@@ -3,7 +3,7 @@ package com.atguigu.springboot.common.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-
+@SuppressWarnings("all")
 public final class MD5 {
 
     public static String encrypt(String strSrc) {

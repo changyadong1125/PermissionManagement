@@ -4,10 +4,6 @@
 <!--namespace属性：设置为接口的全类名-->
 <mapper namespace="com.atguigu.springboot.mapper.SysRoleMapper">
 
-    <!--
-        id属性：设置为接口中的方法名
-        resultType属性：设置为方法的返回值的类型的全类名
-    -->
     <resultMap id="RoleMap" type="com.atguigu.springboot.model.system.SysRole" autoMapping="true"/>
     <!--      IPage<SysRole> selectPage(Page<SysRole> page, @Param("vo") SysRoleQueryVo roleQueryVo);-->
     <select id="selectPage" resultMap="RoleMap">

@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 
@@ -28,7 +29,13 @@ public class LoginController {
     @Resource
     private SysUserService sysUserServiceImp;
 
-
+    /**
+     * return:
+     * author: smile
+     * version: 1.0
+     * description:
+     * 该方法没有用到
+     */
     @ApiOperation("用户登录")
     @PostMapping("/login")
     public Result<Map<String, Object>> login(@RequestBody LoginVo loginVo) {
@@ -53,8 +60,8 @@ public class LoginController {
 
     @ApiOperation("退出登录")
     @PostMapping("/logout")
-    public Result<Map<String, Object>> logout() {
-        sysUserServiceImp.logout();
+    public Result<Map<String, Object>> logout(@RequestHeader String token) {
+        sysUserServiceImp.logout(token);
         return Result.ok();
     }
 }

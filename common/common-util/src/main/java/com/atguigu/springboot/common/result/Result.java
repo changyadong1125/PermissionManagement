@@ -14,9 +14,15 @@ public class Result<T> {
     //返回数据
     private T data;
 
-    private Result(){}
+    private Result() {
+    }
 
-    // 返回数据
+    /**
+     * return:
+     * author: smile
+     * version: 1.0
+     * description:  返回数据
+     */
     private static <T> Result<T> build(T data) {
         Result<T> result = new Result<>();
         if (data != null)
@@ -24,14 +30,14 @@ public class Result<T> {
         return result;
     }
 
-    private static <T> Result<T> build(T body, Integer code, String message) {
+    public static <T> Result<T> build(T body, Integer code, String message) {
         Result<T> result = build(body);
         result.setCode(code);
         result.setMessage(message);
         return result;
     }
 
-    private static <T> Result<T> build(T body, ResultCodeEnum resultCodeEnum) {
+    public static <T> Result<T> build(T body, ResultCodeEnum resultCodeEnum) {
         Result<T> result = build(body);
         result.setCode(resultCodeEnum.getCode());
         result.setMessage(resultCodeEnum.getMessage());

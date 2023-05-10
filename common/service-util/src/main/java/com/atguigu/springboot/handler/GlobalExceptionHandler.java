@@ -1,10 +1,13 @@
 package com.atguigu.springboot.handler;
 
 import com.atguigu.springboot.common.result.Result;
+import com.atguigu.springboot.common.result.ResultCodeEnum;
 import com.atguigu.springboot.exception.MyException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 /**
  * return:
@@ -38,6 +41,13 @@ public class GlobalExceptionHandler {
     public Result<?> error(RuntimeException e) {
         e.printStackTrace();
         return Result.fail().message(e.getMessage());
+
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public Result<?> error(AccessDeniedException e) {
+        e.printStackTrace();
+        return Result.build(null, ResultCodeEnum.PERMISSION);
 
     }
 }

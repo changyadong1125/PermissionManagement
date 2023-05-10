@@ -52,7 +52,7 @@ public class SysUserServiceImp extends ServiceImpl<SysUserMapper, SysUser> imple
         return update > 0;
     }
 
-    private static ArrayList<String> getUserButtonsByUserId(List<SysMenu> userMenus) {
+    public ArrayList<String> getUserButtonsByUserId(List<SysMenu> userMenus) {
         ArrayList<String> permsList = new ArrayList<>();
         for (SysMenu userMenu : userMenus) {
             if (userMenu.getType() == 2) {
@@ -73,7 +73,6 @@ public class SysUserServiceImp extends ServiceImpl<SysUserMapper, SysUser> imple
     @Override
     public Map<String, Object> getUserInfoByToken(String token) {
         HashMap<String, Object> map = new HashMap<>();
-
         SysUser sysUser = (SysUser) redisTemplate.boundValueOps(token).get();
         System.out.println(sysUser);
         assert sysUser != null;
@@ -97,7 +96,7 @@ public class SysUserServiceImp extends ServiceImpl<SysUserMapper, SysUser> imple
         return map;
     }
 
-    private List<SysMenu> getUserMenusByUserId(SysUser sysUser) {
+    public List<SysMenu> getUserMenusByUserId(SysUser sysUser) {
         Long id = sysUser.getId();
         List<SysMenu> sysMenuList;
         //判断该用户是不是超级管理员
@@ -140,7 +139,7 @@ public class SysUserServiceImp extends ServiceImpl<SysUserMapper, SysUser> imple
     }
 
     @Override
-    public void logout() {
-        redisTemplate.delete("token");
+    public void logout(String token) {
+        redisTemplate.delete(token);
     }
 }

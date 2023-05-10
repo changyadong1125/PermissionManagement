@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,17 +37,7 @@ public class SysRoleController {
     @Resource
     private SysRoleService sysRoleServiceImp;
 
-    /**
-     * return:
-     * author: smile
-     * version: 1.0
-     * description:operation执行操作方法
-     */
-    @ApiOperation(value = "角色列表")
-    @GetMapping("/query")
-    public Result<List<SysRole>> findAllAxios() {
-        return Result.ok(sysRoleServiceImp.list());
-    }
+
 
     /**
      * return:
@@ -56,7 +47,8 @@ public class SysRoleController {
      * required 参数是否是必须的 true为必须的 默认为true
      */
     @ApiOperation(value = "获取分页")
-    @PostMapping ("/{page}/{limit}")
+    @PostMapping("/{page}/{limit}")
+    @PreAuthorize("hasAuthority('bnt.sysRole.list')")
     public Result<?> index(
             @ApiParam(name = "page", value = "当前页码", required = true)
             @PathVariable Integer page,
@@ -77,6 +69,7 @@ public class SysRoleController {
      */
     @ApiOperation("角色分页查询")
     @PostMapping("/pageBy/{pageNum}/{pageSize}")
+    @PreAuthorize("hasAuthority('bnt.sysRole.list')")
     public Result<?> page(@PathVariable Integer pageNum,
                        @PathVariable Integer pageSize,
                        @RequestBody  SysRoleQueryVo sysRoleQueryVo){
@@ -95,6 +88,7 @@ public class SysRoleController {
      */
     @ApiOperation("角色新增")
     @PostMapping("/update")
+    @PreAuthorize("hasAuthority('bnt.sysRole.add')")
     public Result<SysRole> save(@RequestBody SysRole sysRole){
         sysRoleServiceImp.save(sysRole);
         return Result.ok();
@@ -105,8 +99,10 @@ public class SysRoleController {
      * version: 1.0
      * description:删除单个
      */
+
     @ApiOperation("角色删除")
     @DeleteMapping("/query/{id}")
+    @PreAuthorize("hasAuthority('bnt.sysRole.remove')")
     public Result<SysRole> deleteOne(@PathVariable Long id){
         sysRoleServiceImp.removeById(id);
         return Result.ok();
@@ -119,6 +115,7 @@ public class SysRoleController {
      */
     @ApiOperation("角色批量删除")
     @DeleteMapping("/query")
+    @PreAuthorize("hasAuthority('bnt.sysRole.remove')")
     public Result<SysRole> deleteBatch(@RequestBody List<Long> idList){
         sysRoleServiceImp.removeByIds(idList);
         return Result.ok();
@@ -130,7 +127,8 @@ public class SysRoleController {
      * description:角色回显
      */
     @ApiOperation("角色回显")
-    @PutMapping ("/update/{id}")
+    @PutMapping("/update/{id}")
+    @PreAuthorize("hasAuthority('bnt.sysRole.update')")
     public Result<SysRole> update(@PathVariable Long id){
         SysRole sysRole = sysRoleServiceImp.getById(id);
         return Result.ok(sysRole);
@@ -143,6 +141,7 @@ public class SysRoleController {
      */
     @ApiOperation("角色修改")
     @PutMapping("/update")
+    @PreAuthorize("hasAuthority('bnt.sysRole.update')")
     public Result<SysRole> edit(@RequestBody SysRole sysRole){
         sysRole.setUpdateTime(new Date());
         sysRoleServiceImp.updateById(sysRole);
@@ -156,6 +155,7 @@ public class SysRoleController {
      */
     @ApiOperation(value = "角色查询")
     @GetMapping("/query/{id}")
+    @PreAuthorize("hasAuthority('bnt.sysUser.assignRole')")
     public Result<?> get(@PathVariable Long id){
         Map<String,Object> map = sysRoleServiceImp.getRoleByUserId(id);
         return Result.ok(map);
@@ -167,6 +167,7 @@ public class SysRoleController {
      * description:给用户绑定角色
      */
     @PostMapping("/doAssign")
+    @PreAuthorize("hasAuthority('bnt.sysUser.assignRole')")
     public Result<?> doAssign(@RequestBody AssignRoleVo assignRoleVo){
         sysRoleServiceImp.assignRole(assignRoleVo);
         return Result.ok();

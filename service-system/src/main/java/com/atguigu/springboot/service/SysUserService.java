@@ -1,9 +1,12 @@
 package com.atguigu.springboot.service;
 
+import com.atguigu.springboot.model.system.SysMenu;
 import com.atguigu.springboot.model.system.SysUser;
 import com.atguigu.springboot.model.vo.LoginVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -26,6 +29,9 @@ public interface SysUserService extends IService<SysUser> {
 
     Map<String, Object> login(LoginVo loginVo);
 
+    List<SysMenu> getUserMenusByUserId(SysUser sysUser);
 
-    void logout();
+    ArrayList<String> getUserButtonsByUserId(List<SysMenu> userMenus);
+
+    void logout(String token);
 }

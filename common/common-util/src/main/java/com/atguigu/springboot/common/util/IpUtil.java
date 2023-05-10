@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 /**
  * 获取ip地址
  */
+@SuppressWarnings("all")
 public class IpUtil {
 
     public static String getIpAddress(HttpServletRequest request) {
